@@ -800,7 +800,7 @@ export default function EventOrganizerWebsite() {
                 key={index}
                 className="bg-gradient-to-br from-gray-900 to-black border-red-900/30 hover:border-red-600/50 transition-all duration-300 group overflow-hidden hover:transform hover:scale-105 hover:shadow-xl hover:shadow-red-500/20"
               >
-                <div className="relative overflow-hidden h-48">
+                <div className="relative aspect-[5/4] overflow-hidden">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
