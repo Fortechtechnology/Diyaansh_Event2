@@ -247,3 +247,77 @@
 .animate-pulse-slow {
   animation: pulse-slow 2s ease-in-out infinite;
 }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #dc2626, #991b1b);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ef4444, #dc2626);
+}
+
+/* Enhanced navigation hover effects */
+.nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.nav-item:hover::before {
+  left: 100%;
+}
+
+/* Navigation backdrop blur enhancement */
+@supports (backdrop-filter: blur(20px)) {
+  .nav-blur {
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-tilt {
+    animation: tilt 6s ease-in-out infinite;
+  }
+}
+@keyframes tilt {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}

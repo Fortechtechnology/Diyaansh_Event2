@@ -51,7 +51,7 @@ export default function EventOrganizerWebsite() {
         "Transform your special occasions into unforgettable experiences with our premium event planning services.",
     },
     {
-      image: "/images/banner2.jpg",
+      image: "/images/banner2.JPG",
       title: "Garba Dhamaka: Dance • Dazzle • Celebrate!",
       subtitle: "Experience the rhythm of tradition",
       description:
@@ -223,39 +223,38 @@ export default function EventOrganizerWebsite() {
 
   const portfolio = [
     {
-      title: "Elegant Evening Gala",
-      category: "Corporate",
-      image: "/images/elegant-dinner.png",
-      attendees: "300+",
+      title: "Garba Dazzle 2k24",
+      category: "Entertainment",
+      image: "/images/Garba.png",
+      attendees: "10000+",
       description:
-        "A sophisticated evening event with premium dining and entertainment under the stars.",
+        "A vibrant Garba night filled with music, dance, colorful attire, and festive spirit celebrating tradition with joyful energy..",
     },
     {
-      title: "Grand Product Launch",
-      category: "Corporate",
-      image: "/images/balloon-celebration.png",
-      attendees: "500+",
+      title: "Rang E Sufi",
+      category: "Entertainment",
+      image: "/images/holi.png",
+      attendees: "5000+",
       description:
-        "An explosive product launch celebration with spectacular balloon drop finale.",
+        "A soulful evening of Sufi music, poetry, and colors celebrating love, devotion, and spiritual harmony.",
     },
     {
-      title: "Cultural Heritage Festival",
-      category: "Cultural",
-      image: "/images/cultural-festival.png",
-      attendees: "2000+",
+      title: "Run for a Girl Child",
+      category: "Social Cause",
+      image: "/images/girl.jpg",
+      attendees: "10000+",
       description:
-        "A vibrant cultural celebration bringing together diverse communities in harmony.",
+        "Run for a Girl Child: A social initiative promoting education, empowerment, and equality for girls through community participation and awareness.",
     },
     {
-      title: "Luxury Wedding Reception",
-      category: "Wedding",
-      image: "/images/elegant-dinner.png",
-      attendees: "200+",
+      title: "Garba Dazzle 2.0 2k25",
+      category: "Entertainment",
+      image: "/images/183.JPG",
+      attendees: "12000+",
       description:
-        "An intimate yet grand wedding reception with exquisite attention to detail.",
+        "Garba Dazzle: A dazzling night of rhythmic dance, vibrant outfits, and cultural celebration under the festive Navratri lights. ",
     },
   ];
-
   const testimonials = [
     {
       name: "Sarah Johnson",
@@ -798,7 +797,7 @@ export default function EventOrganizerWebsite() {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Phone</div>
-                    <div className="text-gray-300">+1 (555) 123-4567</div>
+                    <div className="text-gray-300">+91 9717279705 </div>
                   </div>
                 </div>
 
@@ -808,7 +807,9 @@ export default function EventOrganizerWebsite() {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Email</div>
-                    <div className="text-gray-300">hello@eventmaster.com</div>
+                    <div className="text-gray-300">
+                      diyaanshevents@gmail.com
+                    </div>
                   </div>
                 </div>
 
@@ -818,9 +819,7 @@ export default function EventOrganizerWebsite() {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Address</div>
-                    <div className="text-300">
-                      123 Event Street, City, State 12345
-                    </div>
+                    <div className="text-gray-300">Shalimar Bagh,New Delhi</div>
                   </div>
                 </div>
 
@@ -832,7 +831,7 @@ export default function EventOrganizerWebsite() {
                     <div className="text-white font-semibold">
                       Business Hours
                     </div>
-                    <div className="text-gray-300">Mon - Fri: 9AM - 6PM</div>
+                    <div className="text-gray-300">24X7 available</div>
                   </div>
                 </div>
               </div>
@@ -844,22 +843,22 @@ export default function EventOrganizerWebsite() {
                   Send us a Message
                 </CardTitle>
                 <CardDescription className="text-gray-400">
-                  Fill out the form below and we'll get back to you within 24
-                  hours.
+                  We would love to hear from you! Fill out the form below and
+                  our team will get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 p-6 pt-0">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm text-gray-300 mb-2 block font-medium">
-                      First Name
+                      Full Name
                     </label>
                     <Input
                       className="bg-gray-800 border-gray-700 text-white h-10"
                       placeholder="John"
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label className="text-sm text-gray-300 mb-2 block font-medium">
                       Last Name
                     </label>
@@ -867,7 +866,7 @@ export default function EventOrganizerWebsite() {
                       className="bg-gray-800 border-gray-700 text-white h-10"
                       placeholder="Doe"
                     />
-                  </div>
+                  </div> */}
                 </div>
 
                 <div>
@@ -877,6 +876,15 @@ export default function EventOrganizerWebsite() {
                   <Input
                     className="bg-gray-800 border-gray-700 text-white h-10"
                     placeholder="john@example.com"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm text-gray-300 mb-2 block font-medium">
+                    Phone Number
+                  </label>
+                  <Input
+                    className="bg-gray-800 border-gray-700 text-white h-10"
+                    placeholder="+91 9717279705"
                   />
                 </div>
 
@@ -917,11 +925,15 @@ export default function EventOrganizerWebsite() {
           <div className="grid md:grid-cols-4 gap-6">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-lg flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-white" />
+                <div className="w-14 h-14 flex items-center justify-center">
+                  <img
+                    src="/images/logo2.png" // adjust path if needed
+                    alt="Diyaansh Event Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
-                  EventMaster
+                  Diyaansh Events
                 </span>
               </div>
               <p className="text-gray-400 mb-4 leading-relaxed text-sm">
@@ -931,40 +943,40 @@ export default function EventOrganizerWebsite() {
             </div>
 
             <div>
-              <h4 className="text-white font-semibold mb-4">Services</h4>
+              <h4 className="text-white font-semibold mb-4">Book Now</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li>
                   <Link
-                    href="#"
+                    href="https://sklbx.com/cPvyT6k4"
                     className="hover:text-red-500 transition-colors"
                   >
-                    Corporate Events
+                    SkillBox
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="https://in.bookmyshow.com/activities/garba-dazzle-2-0/ET00452675?webview=true"
                     className="hover:text-red-500 transition-colors"
                   >
-                    Wedding Planning
+                    Book My Show
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="https://www.district.in/events/garba-dazlle-20-sep27-2025-buy-tickets"
                     className="hover:text-red-500 transition-colors"
                   >
-                    Social Events
+                    District By Zomato
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     href="#"
                     className="hover:text-red-500 transition-colors"
                   >
                     Entertainment
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
 
@@ -973,7 +985,7 @@ export default function EventOrganizerWebsite() {
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li>
                   <Link
-                    href="#"
+                    href="/#about"
                     className="hover:text-red-500 transition-colors"
                   >
                     About Us
@@ -981,7 +993,7 @@ export default function EventOrganizerWebsite() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/#portfolio"
                     className="hover:text-red-500 transition-colors"
                   >
                     Portfolio
@@ -989,15 +1001,15 @@ export default function EventOrganizerWebsite() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/#services"
                     className="hover:text-red-500 transition-colors"
                   >
-                    Testimonials
+                    Services
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/#contact"
                     className="hover:text-red-500 transition-colors"
                   >
                     Contact
@@ -1036,7 +1048,7 @@ export default function EventOrganizerWebsite() {
 
           <div className="border-t border-red-900/30 mt-8 pt-6 text-center text-gray-400 text-sm">
             <p>
-              &copy; {new Date().getFullYear()} EventMaster. All rights
+              &copy; {new Date().getFullYear()} Diyaansh Events. All rights
               reserved.
             </p>
           </div>
