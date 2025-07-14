@@ -1,11 +1,17 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 import {
   Calendar,
   Users,
@@ -23,113 +29,197 @@ import {
   ChevronLeft,
   ChevronRight,
   Quote,
-} from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { ScrollProgress } from "@/components/scroll-progress"
-import { Navigation } from "@/components/navigation"
-import { SmoothScroll } from "@/components/smooth-scroll"
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { Navigation } from "@/components/navigation";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 export default function EventOrganizerWebsite() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Hero slider images
   const heroSlides = [
     {
-      image: "/images/elegant-dinner.png",
-      title: "Elegant Evening Events",
+      image: "/images/img1.JPG",
+      title: "High on Music Festival",
       subtitle: "Creating magical moments under the stars",
       description:
         "Transform your special occasions into unforgettable experiences with our premium event planning services.",
     },
     {
-      image: "/images/balloon-celebration.png",
-      title: "Spectacular Celebrations",
-      subtitle: "Where dreams take flight",
-      description: "From corporate launches to grand celebrations, we bring energy and excitement to every event.",
+      image: "/images/banner2.jpg",
+      title: "Garba Dhamaka: Dance • Dazzle • Celebrate!",
+      subtitle: "Experience the rhythm of tradition",
+      description:
+        "Get ready to twirl, sparkle, and celebrate the spirit of Garba like never before!",
     },
     {
       image: "/images/cultural-festival.png",
       title: "Cultural Gatherings",
       subtitle: "Celebrating traditions and communities",
-      description: "We specialize in organizing large-scale cultural events that bring people together in celebration.",
+      description:
+        "We specialize in organizing large-scale cultural events that bring people together in celebration.",
     },
-  ]
-
+    {
+      video: "/images/v2.mp4", // <-- your video file path
+      title: "Cultural Gatherings",
+      subtitle: "Celebrating traditions and communities",
+      description:
+        "We specialize in organizing large-scale cultural events that bring people together in celebration.",
+    },
+  ];
   useEffect(() => {
     // Add a check for window existence
-    if (typeof window === "undefined") return
+    if (typeof window === "undefined") return;
 
     const handleScroll = () => {
-      const sections = ["home", "services", "about", "portfolio", "contact"]
-      const scrollPosition = window.scrollY + 100
+      const sections = ["home", "services", "about", "portfolio", "contact"];
+      const scrollPosition = window.scrollY + 100;
 
       sections.forEach((section) => {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
           }
         }
-      })
-    }
+      });
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Auto-advance hero slider
   useEffect(() => {
     // Add a check for window existence
-    if (typeof window === "undefined") return
+    if (typeof window === "undefined") return;
 
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-    }, 6000)
-    return () => clearInterval(timer)
-  }, [heroSlides.length])
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-  }
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
-  }
+    setCurrentSlide(
+      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+    );
+  };
 
   const services = [
     {
       icon: <Calendar className="w-6 h-6" />,
       title: "Corporate Events",
-      description: "Professional conferences, seminars, and business gatherings that leave lasting impressions.",
-      features: ["Team Building", "Product Launches", "Annual Meetings", "Awards Ceremonies"],
+      description:
+        "Professional conferences, seminars, and business gatherings that leave lasting impressions.",
+      features: [
+        "Team Building",
+        "Product Launches",
+        "Annual Meetings",
+        "Awards Ceremonies",
+      ],
       image: "/images/balloon-celebration.png",
     },
     {
       icon: <Heart className="w-6 h-6" />,
       title: "Wedding Planning",
-      description: "Creating magical moments for your special day with attention to every detail.",
+      description:
+        "Creating magical moments for your special day with attention to every detail.",
       features: ["Venue Selection", "Catering", "Photography", "Entertainment"],
       image: "/images/elegant-dinner.png",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Social Events",
-      description: "Memorable celebrations for birthdays, anniversaries, and special occasions.",
-      features: ["Birthday Parties", "Anniversaries", "Graduations", "Family Reunions"],
+      description:
+        "Memorable celebrations for birthdays, anniversaries, and special occasions.",
+      features: [
+        "Birthday Parties",
+        "Anniversaries",
+        "Graduations",
+        "Family Reunions",
+      ],
       image: "/images/cultural-festival.png",
     },
     {
       icon: <Sparkles className="w-6 h-6" />,
       title: "Entertainment Events",
-      description: "Spectacular shows, concerts, and entertainment experiences.",
-      features: ["Concerts", "Fashion Shows", "Art Exhibitions", "Cultural Events"],
+      description:
+        "Spectacular shows, concerts, and entertainment experiences.",
+      features: [
+        "Concerts",
+        "Fashion Shows",
+        "Art Exhibitions",
+        "Cultural Events",
+      ],
       image: "/images/balloon-celebration.png",
     },
-  ]
+    {
+      icon: <Sparkles className="w-6 h-6" />,
+      title: "Artist Management",
+      description:
+        "Spectacular shows, concerts, and entertainment experiences.",
+      features: [
+        "Concerts",
+        "Fashion Shows",
+        "Art Exhibitions",
+        "Cultural Events",
+      ],
+      image: "/images/balloon-celebration.png",
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Sound production",
+      description:
+        "Expert sound production for events of all sizes, ensuring crystal-clear audio.",
+      features: [
+        "Venue Selection",
+        "Logistics Coordination",
+        "On-Site Management",
+        "Vendor Liaison",
+      ],
+      image: "/images/cultural-festival.png",
+    },
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "Tentage &  Decor",
+      description:
+        "Elegant tentage and decor solutions to transform any space into a stunning venue.",
+      features: [
+        "Budget Planning",
+        "Theme Development",
+        "Timeline Management",
+        "Vendor Recommendations",
+      ],
+      image: "/images/elegant-dinner.png",
+    },
+    {
+      icon: <Mail className="w-6 h-6" />,
+      title: "Crowd Management",
+      description:
+        "Efficient crowd management solutions for large events, ensuring safety and smooth operations.",
+      features: [
+        "Menu Planning",
+        "Food Tasting",
+        "Beverage Selection",
+        "Service Staff",
+      ],
+      image: "/images/balloon-celebration.png",
+    },
+  ];
 
   const portfolio = [
     {
@@ -137,30 +227,34 @@ export default function EventOrganizerWebsite() {
       category: "Corporate",
       image: "/images/elegant-dinner.png",
       attendees: "300+",
-      description: "A sophisticated evening event with premium dining and entertainment under the stars.",
+      description:
+        "A sophisticated evening event with premium dining and entertainment under the stars.",
     },
     {
       title: "Grand Product Launch",
       category: "Corporate",
       image: "/images/balloon-celebration.png",
       attendees: "500+",
-      description: "An explosive product launch celebration with spectacular balloon drop finale.",
+      description:
+        "An explosive product launch celebration with spectacular balloon drop finale.",
     },
     {
       title: "Cultural Heritage Festival",
       category: "Cultural",
       image: "/images/cultural-festival.png",
       attendees: "2000+",
-      description: "A vibrant cultural celebration bringing together diverse communities in harmony.",
+      description:
+        "A vibrant cultural celebration bringing together diverse communities in harmony.",
     },
     {
       title: "Luxury Wedding Reception",
       category: "Wedding",
       image: "/images/elegant-dinner.png",
       attendees: "200+",
-      description: "An intimate yet grand wedding reception with exquisite attention to detail.",
+      description:
+        "An intimate yet grand wedding reception with exquisite attention to detail.",
     },
-  ]
+  ];
 
   const testimonials = [
     {
@@ -175,24 +269,42 @@ export default function EventOrganizerWebsite() {
       name: "Michael Chen",
       role: "Wedding Client",
       image: "/placeholder.svg?height=60&width=60",
-      quote: "Our wedding was absolutely perfect. Every moment was magical, and our guests are still talking about it!",
+      quote:
+        "Our wedding was absolutely perfect. Every moment was magical, and our guests are still talking about it!",
       rating: 5,
     },
     {
       name: "Priya Sharma",
       role: "Cultural Association",
       image: "/placeholder.svg?height=60&width=60",
-      quote: "They managed our 2000+ attendee festival flawlessly. Professional, creative, and culturally sensitive.",
+      quote:
+        "They managed our 2000+ attendee festival flawlessly. Professional, creative, and culturally sensitive.",
       rating: 5,
     },
-  ]
+  ];
 
   const stats = [
-    { number: "500+", label: "Events Organized", icon: <Calendar className="w-5 h-5" /> },
-    { number: "50K+", label: "Happy Clients", icon: <Users className="w-5 h-5" /> },
-    { number: "5+", label: "Years Experience", icon: <Award className="w-5 h-5" /> },
-    { number: "98%", label: "Success Rate", icon: <Star className="w-5 h-5" /> },
-  ]
+    {
+      number: "100+",
+      label: "Events Organized",
+      icon: <Calendar className="w-5 h-5" />,
+    },
+    {
+      number: "50K+",
+      label: "Happy Clients",
+      icon: <Users className="w-5 h-5" />,
+    },
+    {
+      number: "3+",
+      label: "Years Experience",
+      icon: <Award className="w-5 h-5" />,
+    },
+    {
+      number: "95%",
+      label: "Success Rate",
+      icon: <Star className="w-5 h-5" />,
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -202,14 +314,19 @@ export default function EventOrganizerWebsite() {
       <SmoothScroll />
 
       {/* Hero Section with Dynamic Image Slider */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
         {/* Background Image Slider */}
         <div className="absolute inset-0">
           {heroSlides.map((slide, index) => (
             <div
               key={index}
               className={`absolute inset-0 transition-all duration-1000 ${
-                index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+                index === currentSlide
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-105"
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-red-950/50 to-black/80 z-10"></div>
@@ -245,7 +362,9 @@ export default function EventOrganizerWebsite() {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-red-500 scale-125" : "bg-white/50 hover:bg-white/80"
+                index === currentSlide
+                  ? "bg-red-500 scale-125"
+                  : "bg-white/50 hover:bg-white/80"
               }`}
             />
           ))}
@@ -304,14 +423,21 @@ export default function EventOrganizerWebsite() {
         <div className="relative z-10 container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center group transform hover:scale-105 transition-all duration-300">
+              <div
+                key={index}
+                className="text-center group transform hover:scale-105 transition-all duration-300"
+              >
                 <div className="flex justify-center mb-4">
                   <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-red-500/30">
                     {stat.icon}
                   </div>
                 </div>
-                <div className="text-2xl md:text-3xl font-bold text-red-400 mb-2">{stat.number}</div>
-                <div className="text-gray-300 text-sm font-medium">{stat.label}</div>
+                <div className="text-2xl md:text-3xl font-bold text-red-400 mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-300 text-sm font-medium">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -322,13 +448,16 @@ export default function EventOrganizerWebsite() {
       <section id="services" className="py-16 bg-black relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">Our Services</Badge>
+            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">
+              Our Services
+            </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-red-300 bg-clip-text text-transparent">
               What We Do Best
             </h2>
             <p className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              From intimate gatherings to grand celebrations, we specialize in creating events that exceed expectations
-              and create lasting memories.
+              From intimate gatherings to grand celebrations, we specialize in
+              creating events that exceed expectations and create lasting
+              memories.
             </p>
           </div>
 
@@ -354,12 +483,17 @@ export default function EventOrganizerWebsite() {
                   <CardTitle className="text-lg text-white group-hover:text-red-400 transition-colors">
                     {service.title}
                   </CardTitle>
-                  <CardDescription className="text-gray-400 text-sm">{service.description}</CardDescription>
+                  <CardDescription className="text-gray-400 text-sm">
+                    {service.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="p-4 pt-0">
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-xs text-gray-300">
+                      <li
+                        key={idx}
+                        className="flex items-center text-xs text-gray-300"
+                      >
                         <CheckCircle className="w-3 h-3 text-red-500 mr-2 flex-shrink-0" />
                         {feature}
                       </li>
@@ -377,7 +511,9 @@ export default function EventOrganizerWebsite() {
         <div className="absolute inset-0 bg-[url('/images/elegant-dinner.png')] bg-cover bg-center opacity-5"></div>
         <div className="relative z-10 container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">Testimonials</Badge>
+            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">
+              Testimonials
+            </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-red-300 bg-clip-text text-transparent">
               What Our Clients Say
             </h2>
@@ -391,7 +527,9 @@ export default function EventOrganizerWebsite() {
               >
                 <CardContent className="p-6">
                   <Quote className="w-8 h-8 text-red-500 mb-4 opacity-50" />
-                  <p className="text-gray-300 mb-4 text-sm leading-relaxed italic">"{testimonial.quote}"</p>
+                  <p className="text-gray-300 mb-4 text-sm leading-relaxed italic">
+                    "{testimonial.quote}"
+                  </p>
                   <div className="flex items-center space-x-3">
                     <Image
                       src={testimonial.image || "/placeholder.svg"}
@@ -401,11 +539,16 @@ export default function EventOrganizerWebsite() {
                       className="rounded-full"
                     />
                     <div>
-                      <h4 className="text-white font-semibold text-sm">{testimonial.name}</h4>
+                      <h4 className="text-white font-semibold text-sm">
+                        {testimonial.name}
+                      </h4>
                       <p className="text-red-400 text-xs">{testimonial.role}</p>
                       <div className="flex mt-1">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-3 h-3 text-yellow-500 fill-current" />
+                          <Star
+                            key={i}
+                            className="w-3 h-3 text-yellow-500 fill-current"
+                          />
                         ))}
                       </div>
                     </div>
@@ -430,20 +573,29 @@ export default function EventOrganizerWebsite() {
               </h2>
               <div className="space-y-4 animate-fade-in-delayed">
                 <p className="text-base text-gray-300 leading-relaxed">
-                  With over <span className="text-red-400 font-semibold">5 years of experience</span> in the event
-                  planning industry, EventMaster has established itself as a premier event organizing company. We
-                  believe that every event tells a story, and we're here to help you tell yours in the most spectacular
-                  way possible.
+                  With over{" "}
+                  <span className="text-red-400 font-semibold">
+                    5 years of experience
+                  </span>{" "}
+                  in the event planning industry, EventMaster has established
+                  itself as a premier event organizing company. We believe that
+                  every event tells a story, and we're here to help you tell
+                  yours in the most spectacular way possible.
                 </p>
                 <p className="text-base text-gray-300 leading-relaxed">
-                  Our team of <span className="text-red-400 font-semibold">creative professionals</span> brings passion,
-                  expertise, and attention to detail to every project. From concept to execution, we handle every aspect
-                  of your event with precision and care.
+                  Our team of{" "}
+                  <span className="text-red-400 font-semibold">
+                    creative professionals
+                  </span>{" "}
+                  brings passion, expertise, and attention to detail to every
+                  project. From concept to execution, we handle every aspect of
+                  your event with precision and care.
                 </p>
                 <div className="bg-gradient-to-r from-red-900/20 to-transparent p-4 rounded-lg border-l-4 border-red-500 my-6">
                   <p className="text-gray-200 italic">
-                    "We don't just plan events - we create experiences that leave lasting impressions and bring people
-                    together in celebration."
+                    "We don't just plan events - we create experiences that
+                    leave lasting impressions and bring people together in
+                    celebration."
                   </p>
                 </div>
               </div>
@@ -462,7 +614,9 @@ export default function EventOrganizerWebsite() {
                   <div className="text-2xl font-bold text-red-400 mb-1 group-hover:scale-110 transition-transform duration-300">
                     98%
                   </div>
-                  <div className="text-gray-300 text-sm">Client Satisfaction</div>
+                  <div className="text-gray-300 text-sm">
+                    Client Satisfaction
+                  </div>
                   <div className="w-full bg-red-900/30 rounded-full h-1 mt-2">
                     <div className="bg-red-500 h-1 rounded-full w-full animate-pulse"></div>
                   </div>
@@ -470,7 +624,7 @@ export default function EventOrganizerWebsite() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 animate-bounce-in">
-                <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-6 py-3 font-semibold transform hover:scale-105 transition-all duration-300 rounded-lg shadow-lg hover:shadow-red-500/30">
+                {/* <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-6 py-3 font-semibold transform hover:scale-105 transition-all duration-300 rounded-lg shadow-lg hover:shadow-red-500/30">
                   Learn More About Us
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -480,7 +634,7 @@ export default function EventOrganizerWebsite() {
                 >
                   View Our Story
                   <Sparkles className="ml-2 w-4 h-4" />
-                </Button>
+                </Button> */}
               </div>
             </div>
 
@@ -488,8 +642,8 @@ export default function EventOrganizerWebsite() {
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/30 to-red-800/30 rounded-2xl transform rotate-6 blur-sm animate-pulse-slow"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-red-900/30 hover:border-red-600/50 transition-all duration-500 group">
                 <Image
-                  src="/images/cultural-festival.png"
-                  alt="About EventMaster - Cultural Festival"
+                  src="/images/about.JPG"
+                  alt="About Diyaansh Events - Cultural Festival"
                   width={500}
                   height={600}
                   className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
@@ -497,8 +651,12 @@ export default function EventOrganizerWebsite() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
-                    <h4 className="text-white font-semibold text-sm mb-1">Cultural Heritage Festival</h4>
-                    <p className="text-gray-300 text-xs">One of our signature large-scale events</p>
+                    <h4 className="text-white font-semibold text-sm mb-1">
+                      High on Music Festival
+                    </h4>
+                    <p className="text-gray-300 text-xs">
+                      One of our signature large-scale events
+                    </p>
                   </div>
                 </div>
               </div>
@@ -516,36 +674,50 @@ export default function EventOrganizerWebsite() {
                 <Award className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-white font-semibold mb-2">Award Winning</h3>
-              <p className="text-gray-400 text-sm">Recognized for excellence in event planning and execution</p>
+              <p className="text-gray-400 text-sm">
+                Recognized for excellence in event planning and execution
+              </p>
             </div>
             <div className="text-center group">
               <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
                 <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-white font-semibold mb-2">Expert Team</h3>
-              <p className="text-gray-400 text-sm">Professional event planners with diverse expertise</p>
+              <p className="text-gray-400 text-sm">
+                Professional event planners with diverse expertise
+              </p>
             </div>
             <div className="text-center group">
               <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
                 <Heart className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-white font-semibold mb-2">Passionate Service</h3>
-              <p className="text-gray-400 text-sm">Dedicated to making your vision come to life</p>
+              <h3 className="text-white font-semibold mb-2">
+                Passionate Service
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Dedicated to making your vision come to life
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Enhanced Portfolio Section */}
-      <section id="portfolio" className="py-16 bg-gradient-to-br from-red-950/20 to-black">
+      <section
+        id="portfolio"
+        className="py-16 bg-gradient-to-br from-red-950/20 to-black"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">Our Portfolio</Badge>
+            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">
+              Our Portfolio
+            </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-red-300 bg-clip-text text-transparent">
               Recent Success Stories
             </h2>
             <p className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
-              Take a look at some of our most memorable events and see how we bring visions to life.
+              Take a look at some of our most memorable events and see how we
+              bring visions to life.
             </p>
           </div>
 
@@ -563,14 +735,18 @@ export default function EventOrganizerWebsite() {
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-3 right-3">
-                    <Badge className="bg-red-600 text-white text-xs">{project.category}</Badge>
+                    <Badge className="bg-red-600 text-white text-xs">
+                      {project.category}
+                    </Badge>
                   </div>
                 </div>
                 <CardHeader className="p-4">
                   <CardTitle className="text-white group-hover:text-red-400 transition-colors text-base">
                     {project.title}
                   </CardTitle>
-                  <CardDescription className="text-gray-400 text-sm">{project.description}</CardDescription>
+                  <CardDescription className="text-gray-400 text-sm">
+                    {project.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="p-4 pt-0">
                   <div className="flex items-center justify-between">
@@ -578,7 +754,11 @@ export default function EventOrganizerWebsite() {
                       <Users className="w-3 h-3 mr-1 text-red-500" />
                       {project.attendees} Attendees
                     </div>
-                    <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-400 text-xs p-1">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-red-500 hover:text-red-400 text-xs p-1"
+                    >
                       View Details
                     </Button>
                   </div>
@@ -593,19 +773,23 @@ export default function EventOrganizerWebsite() {
       <section id="contact" className="py-16 bg-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">Get In Touch</Badge>
+            <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1">
+              Get In Touch
+            </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-red-300 bg-clip-text text-transparent">
               Let's Plan Your Next Event
             </h2>
             <p className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
-              Ready to create something extraordinary? Contact us today and let's discuss how we can bring your vision
-              to life.
+              Ready to create something extraordinary? Contact us today and
+              let's discuss how we can bring your vision to life.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Contact Information
+              </h3>
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4 group">
@@ -634,7 +818,9 @@ export default function EventOrganizerWebsite() {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Address</div>
-                    <div className="text-300">123 Event Street, City, State 12345</div>
+                    <div className="text-300">
+                      123 Event Street, City, State 12345
+                    </div>
                   </div>
                 </div>
 
@@ -643,7 +829,9 @@ export default function EventOrganizerWebsite() {
                     <Clock className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-white font-semibold">Business Hours</div>
+                    <div className="text-white font-semibold">
+                      Business Hours
+                    </div>
                     <div className="text-gray-300">Mon - Fri: 9AM - 6PM</div>
                   </div>
                 </div>
@@ -652,30 +840,50 @@ export default function EventOrganizerWebsite() {
 
             <Card className="bg-gradient-to-br from-gray-900 to-black border-red-900/30 hover:border-red-500/50 transition-all duration-300">
               <CardHeader className="p-6">
-                <CardTitle className="text-white text-xl">Send us a Message</CardTitle>
+                <CardTitle className="text-white text-xl">
+                  Send us a Message
+                </CardTitle>
                 <CardDescription className="text-gray-400">
-                  Fill out the form below and we'll get back to you within 24 hours.
+                  Fill out the form below and we'll get back to you within 24
+                  hours.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 p-6 pt-0">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm text-gray-300 mb-2 block font-medium">First Name</label>
-                    <Input className="bg-gray-800 border-gray-700 text-white h-10" placeholder="John" />
+                    <label className="text-sm text-gray-300 mb-2 block font-medium">
+                      First Name
+                    </label>
+                    <Input
+                      className="bg-gray-800 border-gray-700 text-white h-10"
+                      placeholder="John"
+                    />
                   </div>
                   <div>
-                    <label className="text-sm text-gray-300 mb-2 block font-medium">Last Name</label>
-                    <Input className="bg-gray-800 border-gray-700 text-white h-10" placeholder="Doe" />
+                    <label className="text-sm text-gray-300 mb-2 block font-medium">
+                      Last Name
+                    </label>
+                    <Input
+                      className="bg-gray-800 border-gray-700 text-white h-10"
+                      placeholder="Doe"
+                    />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm text-gray-300 mb-2 block font-medium">Email</label>
-                  <Input className="bg-gray-800 border-gray-700 text-white h-10" placeholder="john@example.com" />
+                  <label className="text-sm text-gray-300 mb-2 block font-medium">
+                    Email
+                  </label>
+                  <Input
+                    className="bg-gray-800 border-gray-700 text-white h-10"
+                    placeholder="john@example.com"
+                  />
                 </div>
 
                 <div>
-                  <label className="text-sm text-gray-300 mb-2 block font-medium">Event Type</label>
+                  <label className="text-sm text-gray-300 mb-2 block font-medium">
+                    Event Type
+                  </label>
                   <Input
                     className="bg-gray-800 border-gray-700 text-white h-10"
                     placeholder="Wedding, Corporate, etc."
@@ -683,7 +891,9 @@ export default function EventOrganizerWebsite() {
                 </div>
 
                 <div>
-                  <label className="text-sm text-gray-300 mb-2 block font-medium">Message</label>
+                  <label className="text-sm text-gray-300 mb-2 block font-medium">
+                    Message
+                  </label>
                   <Textarea
                     className="bg-gray-800 border-gray-700 text-white"
                     placeholder="Tell us about your event..."
@@ -715,7 +925,8 @@ export default function EventOrganizerWebsite() {
                 </span>
               </div>
               <p className="text-gray-400 mb-4 leading-relaxed text-sm">
-                Creating unforgettable experiences through exceptional event planning and execution.
+                Creating unforgettable experiences through exceptional event
+                planning and execution.
               </p>
             </div>
 
@@ -723,22 +934,34 @@ export default function EventOrganizerWebsite() {
               <h4 className="text-white font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     Corporate Events
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     Wedding Planning
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     Social Events
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     Entertainment
                   </Link>
                 </li>
@@ -749,22 +972,34 @@ export default function EventOrganizerWebsite() {
               <h4 className="text-white font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     Portfolio
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     Testimonials
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-red-500 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
                     Contact
                   </Link>
                 </li>
@@ -774,13 +1009,25 @@ export default function EventOrganizerWebsite() {
             <div>
               <h4 className="text-white font-semibold mb-4">Follow Us</h4>
               <div className="flex space-x-2">
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-red-500 text-sm p-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-red-500 text-sm p-2"
+                >
                   Facebook
                 </Button>
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-red-500 text-sm p-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-red-500 text-sm p-2"
+                >
                   Instagram
                 </Button>
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-red-500 text-sm p-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-red-500 text-sm p-2"
+                >
                   Twitter
                 </Button>
               </div>
@@ -788,10 +1035,13 @@ export default function EventOrganizerWebsite() {
           </div>
 
           <div className="border-t border-red-900/30 mt-8 pt-6 text-center text-gray-400 text-sm">
-            <p>&copy; {new Date().getFullYear()} EventMaster. All rights reserved.</p>
+            <p>
+              &copy; {new Date().getFullYear()} EventMaster. All rights
+              reserved.
+            </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
