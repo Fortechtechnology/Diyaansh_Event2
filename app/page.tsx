@@ -40,6 +40,7 @@ export default function EventOrganizerWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showText, setShowText] = useState(true);
 
   // Hero slider images
   const heroSlides = [
@@ -57,13 +58,7 @@ export default function EventOrganizerWebsite() {
       description:
         "Get ready to twirl, sparkle, and celebrate the spirit of Garba like never before!",
     },
-    {
-      image: "/images/cultural-festival.png",
-      title: "Cultural Gatherings",
-      subtitle: "Celebrating traditions and communities",
-      description:
-        "We specialize in organizing large-scale cultural events that bring people together in celebration.",
-    },
+
     {
       video: "/images/v2.mp4", // <-- your video file path
       title: "Cultural Gatherings",
@@ -99,15 +94,42 @@ export default function EventOrganizerWebsite() {
   }, []);
 
   // Auto-advance hero slider
-  useEffect(() => {
-    // Add a check for window existence
-    if (typeof window === "undefined") return;
+  // useEffect(() => {
+  //   // Add a check for window existence
+  //   if (typeof window === "undefined") return;
 
+  //   const timer = setInterval(() => {
+  //     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  //   }, 6000);
+  //   return () => clearInterval(timer);
+  // }, [heroSlides.length]);
+
+  // const nextSlide = () => {
+  //   setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  // };
+
+  // const prevSlide = () => {
+  //   setCurrentSlide(
+  //     (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+  //   );
+  // };
+
+  useEffect(() => {
+    if (heroSlides[currentSlide].video) return; // ⛔ Do not auto-advance if it's a video
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [heroSlides.length]);
+  }, [currentSlide]);
+  useEffect(() => {
+    if (heroSlides[currentSlide].video) {
+      setShowText(true);
+      const timer = setTimeout(() => setShowText(false), 5000); // Hide after 5 sec
+      return () => clearTimeout(timer);
+    } else {
+      setShowText(true);
+    }
+  }, [currentSlide]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -118,7 +140,6 @@ export default function EventOrganizerWebsite() {
       (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
     );
   };
-
   const services = [
     {
       icon: <Calendar className="w-6 h-6" />,
@@ -329,13 +350,26 @@ export default function EventOrganizerWebsite() {
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-red-950/50 to-black/80 z-10"></div>
-              <Image
-                src={slide.image || "/placeholder.svg"}
-                alt={slide.title}
-                fill
-                className="object-cover"
-                priority={index === 0}
-              />
+              {slide.video ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover absolute inset-0"
+                >
+                  <source src={slide.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <Image
+                  src={slide.image || "/placeholder.svg"}
+                  alt={slide.title}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              )}
             </div>
           ))}
         </div>
@@ -369,7 +403,7 @@ export default function EventOrganizerWebsite() {
           ))}
         </div>
 
-        <div className="relative z-20 container mx-auto px-4 text-center">
+        {/* <div className="relative z-20 container mx-auto px-4 text-center">
           <div className="animate-fade-in-up">
             <Badge className="mb-6 bg-red-600/30 text-red-300 border-red-500/50 hover:bg-red-600/50 animate-pulse-slow px-4 py-1">
               <Sparkles className="w-4 h-4 mr-2 animate-spin-slow" />
@@ -393,7 +427,7 @@ export default function EventOrganizerWebsite() {
                 size="lg"
                 className="bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white px-6 py-3 font-bold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-red-500/50 rounded-lg"
               >
-                Start Planning
+                Book Now
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
 
@@ -403,11 +437,51 @@ export default function EventOrganizerWebsite() {
                 className="border-2 border-red-400 text-red-400 hover:bg-red-500 hover:text-white hover:border-red-500 px-6 py-3 font-bold transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-black/20 rounded-lg"
               >
                 <Play className="mr-2 w-4 h-4" />
-                Watch Our Work
+                Explore
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
+        {showText && (
+          <div className="relative z-20 container mx-auto px-4 text-center">
+            <div className="animate-fade-in-up">
+              <Badge className="mb-6 bg-red-600/30 text-red-300 border-red-500/50 hover:bg-red-600/50 animate-pulse-slow px-4 py-1">
+                <Sparkles className="w-4 h-4 mr-2 animate-spin-slow" />
+                Premium Event Planning
+              </Badge>
+
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-red-200 to-red-400 bg-clip-text text-transparent animate-text-shimmer leading-tight">
+                {heroSlides[currentSlide].title}
+              </h1>
+
+              <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold mb-4 text-red-300 animate-fade-in-delayed">
+                {heroSlides[currentSlide].subtitle}
+              </h2>
+
+              <p className="text-base md:text-lg lg:text-xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed animate-slide-up">
+                {heroSlides[currentSlide].description}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-bounce-in">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white px-6 py-3 font-bold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-red-500/50 rounded-lg"
+                >
+                  Book Now
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-red-400 text-red-400 hover:bg-red-500 hover:text-white hover:border-red-500 px-6 py-3 font-bold transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-black/20 rounded-lg"
+                >
+                  Explore
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Enhanced Floating Elements */}
         <div className="absolute top-20 left-10 w-16 h-16 bg-red-500/20 rounded-full animate-float blur-sm"></div>
