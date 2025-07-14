@@ -603,7 +603,7 @@ export default function EventOrganizerWebsite() {
               <div className="grid grid-cols-2 gap-6 mb-8 animate-slide-up">
                 <div className="text-center p-4 bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent rounded-lg border border-red-900/30 hover:border-red-600/50 transition-all duration-300 group">
                   <div className="text-2xl font-bold text-red-400 mb-1 group-hover:scale-110 transition-transform duration-300">
-                    500+
+                    100+
                   </div>
                   <div className="text-gray-300 text-sm">Events Completed</div>
                   <div className="w-full bg-red-900/30 rounded-full h-1 mt-2">
@@ -612,7 +612,7 @@ export default function EventOrganizerWebsite() {
                 </div>
                 <div className="text-center p-4 bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent rounded-lg border border-red-900/30 hover:border-red-600/50 transition-all duration-300 group">
                   <div className="text-2xl font-bold text-red-400 mb-1 group-hover:scale-110 transition-transform duration-300">
-                    98%
+                    95%
                   </div>
                   <div className="text-gray-300 text-sm">
                     Client Satisfaction
@@ -638,7 +638,7 @@ export default function EventOrganizerWebsite() {
               </div>
             </div>
 
-            <div className="relative order-1 lg:order-2 animate-float">
+            <div className="relative order-1 lg:order-2 animate-tilt">
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/30 to-red-800/30 rounded-2xl transform rotate-6 blur-sm animate-pulse-slow"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-red-900/30 hover:border-red-600/50 transition-all duration-500 group">
                 <Image
