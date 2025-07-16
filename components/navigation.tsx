@@ -136,7 +136,7 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
 
             {/* Call‑to‑action button */}
             <Link
-              href="/#contact"
+              href="https://sklbx.com/cPvyT6k4"
               onClick={(e) => handleNavClick(e, "/#contact")}
               className="ml-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-2 font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/30 rounded-lg text-sm flex items-center"
             >
