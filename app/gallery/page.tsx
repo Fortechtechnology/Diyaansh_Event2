@@ -210,21 +210,38 @@ export default function GalleryPage() {
             <div>
               <h4 className="text-white font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                {[
-                  "Corporate Events",
-                  "Wedding Planning",
-                  "Social Events",
-                  "Entertainment",
-                ].map((s) => (
-                  <li key={s}>
-                    <Link
-                      href="#"
-                      className="hover:text-red-500 transition-colors"
-                    >
-                      {s}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <Link
+                    href="https://sklbx.com/cPvyT6k4"
+                    className="hover:text-red-500 transition-colors"
+                  >
+                    SkillBox
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://in.bookmyshow.com/activities/garba-dazzle-2-0/ET00452675?webview=true"
+                    className="hover:text-red-500 transition-colors"
+                  >
+                    Book My Show
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://www.district.in/events/garba-dazlle-20-sep27-2025-buy-tickets"
+                    className="hover:text-red-500 transition-colors"
+                  >
+                    District By Zomato
+                  </Link>
+                </li>
+                {/* <li>
+                  <Link
+                    href="#"
+                    className="hover:text-red-500 transition-colors"
+                  >
+                    Entertainment
+                  </Link>
+                </li> */}
               </ul>
             </div>
 

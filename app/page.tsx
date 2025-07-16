@@ -282,7 +282,7 @@ export default function EventOrganizerWebsite() {
       role: "CEO, Tech Innovations",
       image: "/placeholder.svg?height=60&width=60",
       quote:
-        "EventMaster transformed our annual conference into an unforgettable experience. The attention to detail was exceptional!",
+        "Diyaansh Events transformed our annual conference into an unforgettable experience. The attention to detail was exceptional!",
       rating: 5,
     },
     {
@@ -327,11 +327,21 @@ export default function EventOrganizerWebsite() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden pt-[80px]">
+      <ScrollProgress />
+      <Navigation activeSection={activeSection} />
+
       <ScrollProgress />
       {/* Enhanced Header */}
       <Navigation activeSection={activeSection} />
       <SmoothScroll />
+      {/* Notification Banner */}
+      <div className="bg-red-600 text-white text-center py-1 px-2 text-sm">
+        <div className="animate-marquee whitespace-nowrap">
+          🎉 Early Bird Tickets Available! Book before August 1st for a special
+          discount. 🎉
+        </div>
+      </div>
 
       {/* Hero Section with Dynamic Image Slider */}
       <section
@@ -639,7 +649,7 @@ export default function EventOrganizerWebsite() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-600/30 px-4 py-1 animate-fade-in-up">
-                About EventMaster
+                About Diyaansh Events
               </Badge>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-red-300 bg-clip-text text-transparent animate-fade-in-up">
                 Crafting Dreams Into Reality
@@ -648,12 +658,12 @@ export default function EventOrganizerWebsite() {
                 <p className="text-base text-gray-300 leading-relaxed">
                   With over{" "}
                   <span className="text-red-400 font-semibold">
-                    5 years of experience
+                    3 years of experience
                   </span>{" "}
-                  in the event planning industry, EventMaster has established
-                  itself as a premier event organizing company. We believe that
-                  every event tells a story, and we're here to help you tell
-                  yours in the most spectacular way possible.
+                  in the event planning industry, Diyaansh Events has
+                  established itself as a premier event organizing company. We
+                  believe that every event tells a story, and we're here to help
+                  you tell yours in the most spectacular way possible.
                 </p>
                 <p className="text-base text-gray-300 leading-relaxed">
                   Our team of{" "}

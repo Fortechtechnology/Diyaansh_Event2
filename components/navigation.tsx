@@ -51,23 +51,46 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
   /**
    * Smooth‑scroll to the in‑page section or fall back to normal navigation.
    */
+  // const handleNavClick = (
+  //   e: React.MouseEvent<HTMLAnchorElement>,
+  //   href: string
+  // ) => {
+  //   if (href.startsWith("/#")) {
+  //     e.preventDefault();
+  //     const id = href.slice(2); // "/#services" → "services"
+  //     const el = document.getElementById(id);
+  //     if (el) {
+  //       const headerOffset = 80; // equal to our fixed header height
+  //       const elementPosition = el.getBoundingClientRect().top;
+  //       const offsetPosition =
+  //         elementPosition + window.pageYOffset - headerOffset;
+  //       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+  //     }
+  //   }
+  //   setIsMenuOpen(false);
+  // };
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     if (href.startsWith("/#")) {
-      e.preventDefault();
-      const id = href.slice(2); // "/#services" → "services"
-      const el = document.getElementById(id);
-      if (el) {
-        const headerOffset = 80; // equal to our fixed header height
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      if (pathname === "/") {
+        e.preventDefault();
+        const id = href.slice(2);
+        const el = document.getElementById(id);
+        if (el) {
+          const headerOffset = 80;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
+        setIsMenuOpen(false);
       }
+      // On gallery or other pages: allow default link behavior (go to home with hash)
+    } else {
+      setIsMenuOpen(false);
     }
-    setIsMenuOpen(false);
   };
 
   /**
