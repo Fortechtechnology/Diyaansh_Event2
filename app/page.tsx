@@ -12,6 +12,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import emailjs from "emailjs-com";
+
 import {
   Calendar,
   Users,
@@ -92,6 +94,67 @@ export default function EventOrganizerWebsite() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const [formData, setFormData] = useState({
+    full_name: "",
+    email: "",
+    phone: "",
+    event_type: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await emailjs.send(
+        "service_annfliy",
+        "template_s0jxrka",
+        {
+          full_name: formData.full_name,
+          email: formData.email,
+          phone: formData.phone,
+          event_type: formData.event_type,
+          message: formData.message,
+          reply_to: formData.email,
+        },
+        "WC3ewKjJ59FELHMDt"
+      );
+
+      await emailjs.send(
+        "service_annfliy",
+        "template_8oxeako",
+        {
+          to_name: formData.full_name,
+          email: formData.email,
+          message: formData.message,
+        },
+        "WC3ewKjJ59FELHMDt"
+      );
+
+      setStatus("✅ Message sent! Confirmation has been emailed to you.");
+      setFormData({
+        full_name: "",
+        email: "",
+        phone: "",
+        event_type: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error(err);
+      setStatus("❌ Failed to send message. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Auto-advance hero slider
   // useEffect(() => {
@@ -931,72 +994,138 @@ export default function EventOrganizerWebsite() {
                   our team will get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4 p-6 pt-0">
-                <div className="grid grid-cols-2 gap-4">
+              <CardContent className="p-6 pt-0">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="text-sm text-gray-300 mb-2 block font-medium">
+                    <label
+                      htmlFor="full_name"
+                      className="text-sm text-gray-300 mb-2 block font-medium"
+                    >
                       Full Name
                     </label>
                     <Input
-                      className="bg-gray-800 border-gray-700 text-white h-10"
+                      id="full_name"
+                      value={formData.full_name}
+                      onChange={handleChange}
                       placeholder="John"
+                      className="bg-gray-800 border-gray-700 text-white h-10"
+                      required
                     />
                   </div>
-                  {/* <div>
-                    <label className="text-sm text-gray-300 mb-2 block font-medium">
-                      Last Name
+
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="text-sm text-gray-300 mb-2 block font-medium"
+                    >
+                      Email
                     </label>
                     <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="john@example.com"
                       className="bg-gray-800 border-gray-700 text-white h-10"
-                      placeholder="Doe"
+                      required
                     />
-                  </div> */}
-                </div>
+                  </div>
 
-                <div>
-                  <label className="text-sm text-gray-300 mb-2 block font-medium">
-                    Email
-                  </label>
-                  <Input
-                    className="bg-gray-800 border-gray-700 text-white h-10"
-                    placeholder="john@example.com"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm text-gray-300 mb-2 block font-medium">
-                    Phone Number
-                  </label>
-                  <Input
-                    className="bg-gray-800 border-gray-700 text-white h-10"
-                    placeholder="+91 9717279705"
-                  />
-                </div>
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="text-sm text-gray-300 mb-2 block font-medium"
+                    >
+                      Phone Number
+                    </label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+91 9717279705"
+                      className="bg-gray-800 border-gray-700 text-white h-10"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="text-sm text-gray-300 mb-2 block font-medium">
-                    Event Type
-                  </label>
-                  <Input
-                    className="bg-gray-800 border-gray-700 text-white h-10"
-                    placeholder="Wedding, Corporate, etc."
-                  />
-                </div>
+                  <div>
+                    <label
+                      htmlFor="event_type"
+                      className="text-sm text-gray-300 mb-2 block font-medium"
+                    >
+                      Event Type
+                    </label>
+                    <Input
+                      id="event_type"
+                      value={formData.event_type}
+                      onChange={handleChange}
+                      placeholder="Wedding, Corporate, etc."
+                      className="bg-gray-800 border-gray-700 text-white h-10"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="text-sm text-gray-300 mb-2 block font-medium">
-                    Message
-                  </label>
-                  <Textarea
-                    className="bg-gray-800 border-gray-700 text-white"
-                    placeholder="Tell us about your event..."
-                    rows={4}
-                  />
-                </div>
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="text-sm text-gray-300 mb-2 block font-medium"
+                    >
+                      Message
+                    </label>
+                    <Textarea
+                      id="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your event..."
+                      className="bg-gray-800 border-gray-700 text-white"
+                      rows={4}
+                      required
+                    />
+                  </div>
 
-                <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 transform hover:scale-105 transition-all duration-300 rounded-lg">
-                  Send Message
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 transform hover:scale-105 transition-all duration-300 rounded-lg"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <svg
+                          className="animate-spin h-4 w-4"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="white"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="white"
+                            d="M4 12a8 8 0 018-8v8z"
+                          />
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      <>
+                        Send Message
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </>
+                    )}
+                  </Button>
+
+                  {status && (
+                    <p className="text-sm text-center text-gray-300 pt-2">
+                      {status}
+                    </p>
+                  )}
+                </form>
               </CardContent>
             </Card>
           </div>

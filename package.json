@@ -42,6 +42,7 @@
     "clsx": "^2.1.1",
     "cmdk": "latest",
     "date-fns": "4.1.0",
+    "emailjs-com": "^3.2.0",
     "embla-carousel-react": "latest",
     "framer-motion": "^12.23.6",
     "input-otp": "latest",
