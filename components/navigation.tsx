@@ -157,7 +157,7 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
               </Link>
             ))}
 
-            {/* Call‑to‑action button */}
+            {/* Call‑to‑action buttons */}
             <Link
               href="https://sklbx.com/cPvyT6k4"
               target="_blank"
