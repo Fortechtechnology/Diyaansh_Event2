@@ -20,6 +20,7 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileBookOpen, setIsMobileBookOpen] = useState(false);
 
   /**
    * All navigation items in one place so desktop & mobile stay in sync.
@@ -158,7 +159,7 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
             ))}
 
             {/* Call‑to‑action buttons */}
-            <Link
+            {/* <Link
               href="https://sklbx.com/cPvyT6k4"
               target="_blank"
               rel="noopener noreferrer"
@@ -166,10 +167,43 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
             >
               Book Now
               <ArrowRight className="ml-1 w-3 h-3" />
-            </Link>
+            </Link> */}
+            <div className="relative group ml-3">
+              <button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-2 font-semibold rounded-lg text-sm flex items-center transition-all duration-300 shadow-lg hover:shadow-red-500/30">
+                Book Now
+                <ArrowRight className="ml-1 w-3 h-3" />
+              </button>
+              <div className="absolute hidden group-hover:flex flex-col bg-black border border-red-900/30 rounded-lg mt-2 w-48 z-50 shadow-lg">
+                <Link
+                  href="https://in.bookmyshow.com/activities/garba-dazzle-2-0/ET00452675?webview=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 hover:bg-red-900/40 text-white text-sm"
+                >
+                  Book My Show
+                </Link>
+                <Link
+                  href="https://sklbx.com/cPvyT6k4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 hover:bg-red-900/40 text-white text-sm"
+                >
+                  SkillBox
+                </Link>
+                <Link
+                  href="https://www.district.in/events/garba-dazlle-20-sep27-2025-buy-tickets"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 hover:bg-red-900/40 text-white text-sm"
+                >
+                  District By Zomato
+                </Link>
+              </div>
+            </div>
           </nav>
 
           {/* Mobile menu toggle */}
+
           <button
             className="md:hidden relative w-8 h-8 text-white hover:text-red-500 transition-all duration-300 p-1 rounded-lg hover:bg-red-900/20 group"
             onClick={() => setIsMenuOpen((open) => !open)}
@@ -196,7 +230,9 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
         {/* Mobile navigation */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-500 ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            isMenuOpen
+              ? "max-h-screen overflow-y-auto opacity-100"
+              : "max-h-0 opacity-0"
           }`}
         >
           <nav className="mt-4 pb-4 border-t border-red-900/30">
@@ -221,7 +257,7 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
               ))}
 
               {/* Mobile CTA */}
-              <div className="pt-3 mt-3 border-t border-red-900/30">
+              {/* <div className="pt-3 mt-3 border-t border-red-900/30">
                 <Button
                   onClick={() => {
                     // Fake an event object for types, then reuse the same handler
@@ -237,6 +273,49 @@ export function Navigation({ activeSection = "" }: NavigationProps) {
                   Get Free Quote
                   <ArrowRight className="ml-2 w-3 h-3" />
                 </Button>
+              </div> */}
+              {/* Mobile Book Now Dropdown */}
+              {/* Mobile Book Now Dropdown */}
+              <div className="pt-3 mt-3 border-t border-red-900/30 px-4">
+                <button
+                  onClick={() => setIsMobileBookOpen(!isMobileBookOpen)}
+                  className="w-full text-left text-white font-semibold py-2 flex items-center justify-between"
+                >
+                  Book Now
+                  <ArrowRight
+                    className={`w-4 h-4 transition-transform duration-300 ${
+                      isMobileBookOpen ? "rotate-90" : "rotate-0"
+                    }`}
+                  />
+                </button>
+                {isMobileBookOpen && (
+                  <div className="flex flex-col space-y-1 mt-2">
+                    <Link
+                      href="https://in.bookmyshow.com/activities/garba-dazzle-2-0/ET00452675?webview=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 px-4 rounded-lg hover:bg-red-900/40 text-white text-sm"
+                    >
+                      Book My Show
+                    </Link>
+                    <Link
+                      href="https://sklbx.com/cPvyT6k4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 px-4 rounded-lg hover:bg-red-900/40 text-white text-sm"
+                    >
+                      SkillBox
+                    </Link>
+                    <Link
+                      href="https://www.district.in/events/garba-dazlle-20-sep27-2025-buy-tickets"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 px-4 rounded-lg hover:bg-red-900/40 text-white text-sm"
+                    >
+                      District By Zomato
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </nav>
